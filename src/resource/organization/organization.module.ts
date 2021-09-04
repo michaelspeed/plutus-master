@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { CompanyService } from './company.service';
-import { CompanyController } from './company.controller';
+import { OrganizationService } from './organization.service';
+import { OrganizationController } from './organization.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServiceModule } from '../../service/service.module';
+import { RequestContextService } from '../../common/RequestContext/request-context.service';
 import { APP_GUARD } from '@nestjs/core';
 import { ContextGuard } from '../../common/middleware/context.guard';
-import { RequestContextService } from '../../common/RequestContext/request-context.service';
-import { ServiceModule } from '../../service/service.module';
 
 @Module({
   imports: [
@@ -23,9 +23,9 @@ import { ServiceModule } from '../../service/service.module';
     ConfigModule,
     ServiceModule,
   ],
-  controllers: [CompanyController],
+  controllers: [OrganizationController],
   providers: [
-    CompanyService,
+    OrganizationService,
     RequestContextService,
     {
       provide: APP_GUARD,
@@ -33,4 +33,4 @@ import { ServiceModule } from '../../service/service.module';
     },
   ],
 })
-export class CompanyModule {}
+export class OrganizationModule {}

@@ -1,11 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { RequestContext } from '../../common/RequestContext/request-context';
+import { PrismaService } from '../../service/helpers/prisma.service';
 
 @Injectable()
 export class CompanyService {
-  create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+  constructor(private readonly prismaService: PrismaService) {}
+
+  create(createCompanyDto: CreateCompanyDto, ctx: RequestContext) {
+    /*return this.prismaService.organization.create({
+      data: {
+        ...createCompanyDto,
+        licence: ctx.license,
+      },
+    });*/
   }
 
   findAll() {

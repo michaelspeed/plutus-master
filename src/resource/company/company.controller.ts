@@ -1,15 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { RequestContext } from '../../common/RequestContext/request-context';
+import { Ctx } from '../../common/decorator/request-context.decorator';
 
 @Controller('company')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
   @Post()
-  create(@Body() createCompanyDto: CreateCompanyDto) {
-    return this.companyService.create(createCompanyDto);
+  create(
+    @Body() createCompanyDto: CreateCompanyDto,
+    @Ctx() context: RequestContext,
+  ) {
+    return this.companyService.create(createCompanyDto, context);
   }
 
   @Get()

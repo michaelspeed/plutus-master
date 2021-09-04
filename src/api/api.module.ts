@@ -3,7 +3,6 @@ import { AuthenticationController } from './controllers/authentication/authentic
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { async } from 'rxjs';
 
 @Module({
   imports: [

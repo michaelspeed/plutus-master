@@ -11,10 +11,15 @@ generator client {
   previewFeatures = ["mongoDb"]
 }
 
-model Company {
+model Organization {
     id          String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
     name        String
     address     String?
+    gst         String?
+    state       String?
+    zip         Int?
+    phone       Int?
+    licence     String?
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt
     customers   Customer[]
@@ -24,7 +29,7 @@ model Customer {
     id          String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
     contact     String
     companyId   String?         @db.ObjectId
-    company     Company?        @relation(fields: [companyId], references: [id])
+    company     Organization?        @relation(fields: [companyId], references: [id])
     address1    String?
     address2    String?
     State       String?

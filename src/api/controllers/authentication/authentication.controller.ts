@@ -35,7 +35,7 @@ export class AuthenticationController {
   private static createLicenseObject(object) {
     let employee = false;
     let licenceId;
-    let invalid = false;
+    let licenseStatus = false;
     if (object.licenses_licenses_employeeLicenseIdTousers.length > 0) {
       employee = true;
       licenceId = object.licenses_licenses_employeeLicenseIdTousers[0].id;
@@ -43,12 +43,12 @@ export class AuthenticationController {
       employee = false;
       licenceId = object.licenses_licenses_ownerTousers[0].id;
     } else {
-      invalid = true;
+      licenseStatus = true;
     }
     return {
       employee,
       licenceId,
-      invalid,
+      licenseStatus,
       user: object,
     };
   }
