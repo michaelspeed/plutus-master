@@ -25,6 +25,6 @@ export class ContextGuard implements CanActivate {
     } catch (e) {
       throw e;
     }
-    return undefined;
+    return false;
   }
 }

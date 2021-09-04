@@ -12,14 +12,14 @@ export class RequestContextService {
     try {
       const token = await this.fromRequestHeader(req);
       const decripted = await this.decryptToken(token);
-      if (!decripted.licenseStatus) {
+      /*if (!decripted.licenseStatus) {
         throw new UnauthorizedException('Your license is not valid');
-      }
+      }*/
       return new RequestContext({
         ...decripted,
       });
     } catch (e) {
-      return e;
+      throw new UnauthorizedException(e);
     }
   }
 
@@ -32,15 +32,20 @@ export class RequestContextService {
       }
       return decrypted;
     } catch (e) {
-      return e;
+      throw new UnauthorizedException(e);
     }
   }
 
   async fromRequestHeader(request: Request): Promise<string> {
-    const token = request.get('Authorization');
-    if (!token) {
+    try {
+      const token = request.get('Authorization');
+      if (!token) {
+        throw new UnauthorizedException();
+      } else {
+        return token;
+      }
+    } catch (e) {
       throw new UnauthorizedException();
     }
-    return token;
   }
 }

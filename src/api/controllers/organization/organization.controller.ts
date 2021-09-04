@@ -18,7 +18,7 @@ export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) {}
 
   @Post()
-  create(
+  async create(
     @Body() createOrganizationDto: CreateOrganizationDto,
     @Ctx() context: RequestContext,
   ) {
@@ -26,17 +26,21 @@ export class OrganizationController {
   }
 
   @Get()
-  findAll(@Ctx() context: RequestContext) {
-    return this.organizationService.findAll(context);
+  async findAll(@Ctx() context: RequestContext) {
+    try {
+      return this.organizationService.findAll(context);
+    } catch (e) {
+      return e;
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.organizationService.findOne(+id);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateOrganizationDto: UpdateOrganizationDto,
   ) {
@@ -44,7 +48,7 @@ export class OrganizationController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.organizationService.remove(+id);
   }
 }
