@@ -12,6 +12,7 @@ export class OrganizationService {
     createOrganizationDto: CreateOrganizationDto,
     ctx: RequestContext,
   ) {
+    console.log(createOrganizationDto);
     return this.prismaService.organization.create({
       data: {
         ...createOrganizationDto,

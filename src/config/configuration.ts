@@ -5,8 +5,6 @@ export default () => ({
   token: 'plutus',
   exclusions: {
     gql: [],
-    rest: [
-      '/authentication/login'
-    ],
+    rest: ['/authentication/login'],
   },
 });
