@@ -12,11 +12,10 @@ export class OrganizationService {
     createOrganizationDto: CreateOrganizationDto,
     ctx: RequestContext,
   ) {
-    console.log(createOrganizationDto);
     return this.prismaService.organization.create({
       data: {
         ...createOrganizationDto,
-        licence: ctx.license,
+        licence: ctx.licence,
       },
     });
   }
@@ -24,7 +23,7 @@ export class OrganizationService {
   async findAll(ctx: RequestContext) {
     return this.prismaService.organization.findMany({
       where: {
-        licence: ctx.license,
+        licence: ctx.licence,
       },
     });
   }

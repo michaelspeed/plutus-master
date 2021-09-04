@@ -11,20 +11,20 @@ export type SerializeRequestContext = {
 };
 
 export class RequestContext {
-  private readonly _licenseId?: string;
+  private readonly _licenceId?: string;
   private readonly _licenseStatus: boolean;
   private readonly _user: User;
   private readonly _employee?: boolean;
 
   constructor(options: {
-    licenseId: string;
+    licenceId: string;
     licenseStatus: boolean;
     user: User;
     employee: boolean;
   }) {
-    const { licenseId, licenseStatus, user, employee } = options;
+    const { licenceId, licenseStatus, user, employee } = options;
     this._user = user;
-    this._licenseId = licenseId;
+    this._licenceId = licenceId;
     this._licenseStatus = licenseStatus;
     this._employee = employee;
   }
@@ -32,7 +32,7 @@ export class RequestContext {
   static deserialize(ctxObject: SerializeRequestContext): RequestContext {
     return new RequestContext({
       employee: ctxObject.employee,
-      licenseId: ctxObject.licenceId,
+      licenceId: ctxObject.licenceId,
       licenseStatus: ctxObject.licenseStatus,
       user: ctxObject.user,
     });
@@ -46,8 +46,8 @@ export class RequestContext {
     return this._user;
   }
 
-  public get license(): string {
-    return this._licenseId;
+  public get licence(): string {
+    return this._licenceId;
   }
 
   public get licenseStatus(): boolean {

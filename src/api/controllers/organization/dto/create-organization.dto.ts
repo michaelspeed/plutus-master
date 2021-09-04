@@ -6,7 +6,7 @@ export class CreateOrganizationDto {
   @IsString()
   name: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsString()
   address: string;
 
