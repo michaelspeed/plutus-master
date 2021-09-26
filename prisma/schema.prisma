@@ -32,7 +32,7 @@ model Customer {
     company     Organization?        @relation(fields: [companyId], references: [id])
     address1    String?
     address2    String?
-    State       String?
+    state       String?
     zip         Int?
     phone       Int?
     dealerno    String?

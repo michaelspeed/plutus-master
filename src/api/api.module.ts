@@ -9,6 +9,7 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ContextGuard } from './common/middleware/context.guard';
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { RequestContextService } from './common/RequestContext/request-context.service';
+import { CustomersModule } from './controllers/customers/customers.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { RequestContextService } from './common/RequestContext/request-context.s
     ConfigModule,
     OrganizationModule,
     CompanyModule,
+    CustomersModule,
   ],
   controllers: [AuthenticationController],
   providers: [
