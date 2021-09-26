@@ -4,10 +4,6 @@ import { IsBoolean, IsNumber, IsString } from 'class-validator';
 export class CreateCustomerDto {
   @ApiProperty()
   @IsString()
-  id: string;
-
-  @ApiProperty()
-  @IsString()
   contact: string;
 
   @ApiProperty()
