@@ -44,7 +44,7 @@ export class CreateCustomerDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsNumber()
+  @IsNumber({ allowNaN: true })
   phone: number;
 
   @ApiPropertyOptional()
@@ -64,17 +64,17 @@ export class CreateCustomerDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsNumber()
+  @IsNumber({ allowNaN: true })
   creditlimit: number;
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsNumber()
+  @IsNumber({ allowNaN: true })
   creditdays: number;
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsNumber()
+  @IsNumber({ allowNaN: true })
   stop_billings: number;
 
   @ApiPropertyOptional()
