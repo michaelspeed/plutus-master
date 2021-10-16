@@ -12,13 +12,13 @@ export class CustomersService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    const { companyId, ...rest } = createCustomerDto;
+    const { id, ...rest } = createCustomerDto;
     return this.prismaService.customer.create({
       data: {
         ...rest,
         company: {
           connect: {
-            id: companyId,
+            id: id,
           },
         },
       },

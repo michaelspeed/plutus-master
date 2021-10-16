@@ -2,11 +2,12 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GstStatus } from '@prisma/client';
 import {
   IsBoolean,
-  IsDate, IsEnum,
+  IsDate,
+  IsEnum,
   IsNumber,
   IsOptional,
-  IsString
-} from "class-validator";
+  IsString,
+} from 'class-validator';
 
 export class CreateCustomerDto {
   @ApiProperty()
@@ -15,21 +16,21 @@ export class CreateCustomerDto {
 
   @ApiProperty()
   @IsString()
-  contact: string;
+  contact_person: string;
 
   @ApiProperty()
   @IsString()
-  companyId: string;
+  id: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  saddress: string;
+  shipping_address: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  baddress: string;
+  bill_address: string;
 
   @ApiPropertyOptional()
   @IsString()
@@ -37,9 +38,9 @@ export class CreateCustomerDto {
   state: string;
 
   @ApiPropertyOptional()
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  zip: number;
+  pin_code: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -49,17 +50,17 @@ export class CreateCustomerDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  druglicenseno: string;
+  drug_license: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsDate()
-  drugvalidity: Date;
+  drug_license_validity: Date;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  pan: string;
+  PAN: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -69,12 +70,12 @@ export class CreateCustomerDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber()
-  creditDays: number;
+  creditdays: number;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber()
-  stopBilling: number;
+  stop_billings: number;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -89,22 +90,22 @@ export class CreateCustomerDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  area: string;
+  area_name: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  headq: string;
+  headquaters: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  msr: string;
+  MSR: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  dsm: string;
+  DSM: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -119,12 +120,12 @@ export class CreateCustomerDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  documenthrough: string;
+  document_through: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  gstin: string;
+  GSTIN: string;
 
   @ApiPropertyOptional()
   @IsOptional()
