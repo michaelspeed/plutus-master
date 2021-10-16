@@ -9,10 +9,9 @@ export class CustomersService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createCustomerDto: CreateCustomerDto, ctx: RequestContext) {
-    /*if (!ctx.licenseStatus) {
+    if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
-    }*/
-    console.log(ctx);
+    }
     const { id, ...rest } = createCustomerDto;
     return this.prismaService.customer.create({
       data: {
