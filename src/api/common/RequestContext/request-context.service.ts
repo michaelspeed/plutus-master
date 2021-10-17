@@ -11,7 +11,9 @@ export class RequestContextService {
   async fromRequest(req: Request): Promise<RequestContext> {
     try {
       const token = await this.fromRequestHeader(req);
+      console.log(token)
       const decripted = await this.decryptToken(token);
+      console.log(decripted);
       /*if (!decripted.licenseStatus) {
         throw new UnauthorizedException('Your license is not valid');
       }*/
