@@ -34,6 +34,19 @@ export class CustomersService {
     });
   }
 
+  findAllWithCompany(ctx: RequestContext, id: string) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.customer.findMany({
+      where: {
+        company: {
+          id,
+        },
+      },
+    });
+  }
+
   findAll() {
     return `This action returns all customers`;
   }

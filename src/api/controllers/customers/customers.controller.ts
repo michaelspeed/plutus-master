@@ -30,6 +30,11 @@ export class CustomersController {
     return this.customersService.findAll();
   }
 
+  @Get('company/:id')
+  findAllWithCompany(@Param('id') id: string, @Ctx() context: RequestContext) {
+    return this.customersService.findAllWithCompany(context, id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.customersService.findOne(+id);
