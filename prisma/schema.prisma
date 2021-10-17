@@ -63,7 +63,8 @@ model Customer {
     banker              String?
     document_through    String?
     GSTIN               String?
-    state_tax           Boolean?
+    state_tax           Boolean?    @default(false)
+    l_type              Boolean?    @default(false)
     gststatus           GstStatus?      @default(unregistered)
     createdAt           DateTime        @default(now())
     updatedAt           DateTime        @updatedAt
