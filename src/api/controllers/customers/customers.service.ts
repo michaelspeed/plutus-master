@@ -9,6 +9,8 @@ export class CustomersService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createCustomerDto: CreateCustomerDto, ctx: RequestContext) {
+    console.log(createCustomerDto);
+    console.log(ctx);
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
