@@ -89,6 +89,11 @@ export class CreateCustomerDto {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @IsBoolean()
+  state_tax: boolean;
+
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsString()
   area_name: string;
 
