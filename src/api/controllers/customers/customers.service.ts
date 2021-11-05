@@ -51,12 +51,48 @@ export class CustomersService {
     return `This action returns all customers`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
+  findOne(id: string, ctx: RequestContext) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.customer.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
-  update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
+  update(
+    id: string,
+    updateCustomerDto: UpdateCustomerDto,
+    ctx: RequestContext,
+  ) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    const { id: companyId, ...rest } = updateCustomerDto;
+    const newObject: any = {};
+    const keys = Object.keys(rest);
+    for (const key of keys) {
+      if (updateCustomerDto[key] === null) {
+        newObject[key] = undefined;
+      } else {
+        newObject[key] = updateCustomerDto[key];
+      }
+    }
+    return this.prismaService.customer.update({
+      where: {
+        id,
+      },
+      data: {
+        ...newObject,
+        company: {
+          connect: {
+            id: companyId,
+          },
+        },
+      },
+    });
   }
 
   remove(id: number) {

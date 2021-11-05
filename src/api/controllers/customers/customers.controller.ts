@@ -36,16 +36,17 @@ export class CustomersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customersService.findOne(+id);
+  findOne(@Param('id') id: string, @Ctx() context: RequestContext) {
+    return this.customersService.findOne(id, context);
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateCustomerDto: UpdateCustomerDto,
+    @Ctx() context: RequestContext,
   ) {
-    return this.customersService.update(+id, updateCustomerDto);
+    return this.customersService.update(id, updateCustomerDto, context);
   }
 
   @Delete(':id')
