@@ -83,7 +83,7 @@ export class CustomersService {
       } else {
         newObject[key] = updateCustomerDto[key];
         const datetest = Date.parse(updateCustomerDto[key]);
-        if (isNaN(datetest)) {
+        if (!isNaN(datetest)) {
           newObject[key] = datetest;
         }
       }
