@@ -86,11 +86,6 @@ export class CustomersService {
       },
       data: {
         ...newObject,
-        company: {
-          connect: {
-            id: companyId,
-          },
-        },
       },
     });
   }
