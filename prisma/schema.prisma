@@ -23,6 +23,7 @@ model Organization {
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt
     customers   Customer[]
+    creditors   Creditor[]
 }
 
 enum GstStatus {
@@ -34,6 +35,43 @@ enum GstStatus {
 }
 
 model Customer {
+    id                  String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
+    name                String
+    contact_person      String
+    companyId           String?         @db.ObjectId
+    company             Organization?   @relation(fields: [companyId], references: [id])
+    shipping_address    String?
+    bill_address        String?
+    city                String?
+    pin_code            String?
+    phone               BigInt?
+    drug_license        String?
+    drug_license_validity    DateTime?
+    openingBalance      Float       @default(0.00)
+    currentBalance      Float       @default(0.00)
+    PAN                 String?
+    creditlimit         Float       @default(0.00)
+    creditdays          Int         @default(0)
+    state               String?
+    stop_billings       Int         @default(0)
+    discount            Float?
+    istatetax           Boolean?
+    area_name           String?
+    headquaters         String?
+    MSR                 String?
+    DSM                 String?
+    transporter         String?
+    banker              String?
+    document_through    String?
+    GSTIN               String?
+    state_tax           Boolean?    @default(false)
+    l_type              Boolean?    @default(false)
+    gststatus           GstStatus?      @default(unregistered)
+    createdAt           DateTime        @default(now())
+    updatedAt           DateTime        @updatedAt
+}
+
+model Creditor {
     id                  String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
     name                String
     contact_person      String

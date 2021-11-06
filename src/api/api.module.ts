@@ -10,6 +10,7 @@ import { ContextGuard } from './common/middleware/context.guard';
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { RequestContextService } from './common/RequestContext/request-context.service';
 import { CustomersModule } from './controllers/customers/customers.module';
+import { CreditorsModule } from './controllers/creditors/creditors.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { CustomersModule } from './controllers/customers/customers.module';
     OrganizationModule,
     CompanyModule,
     CustomersModule,
+    CreditorsModule,
   ],
   controllers: [AuthenticationController],
   providers: [
