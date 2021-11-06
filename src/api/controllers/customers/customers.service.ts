@@ -20,8 +20,8 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = createCustomerDto[key];
-        const datetest = new Date(createCustomerDto[key]);
-        if (datetest instanceof Date) {
+        const datetest = Date.parse(createCustomerDto[key]);
+        if (!isNaN(datetest)) {
           newObject[key] = datetest;
         }
       }
@@ -82,8 +82,8 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = updateCustomerDto[key];
-        const datetest = new Date(updateCustomerDto[key]);
-        if (datetest instanceof Date) {
+        const datetest = Date.parse(updateCustomerDto[key]);
+        if (isNaN(datetest)) {
           newObject[key] = datetest;
         }
       }
