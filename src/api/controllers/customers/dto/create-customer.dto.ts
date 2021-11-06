@@ -54,8 +54,8 @@ export class CreateCustomerDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsDate()
-  drug_license_validity: Date;
+  @IsString()
+  drug_license_validity: string;
 
   @ApiPropertyOptional()
   @IsOptional()

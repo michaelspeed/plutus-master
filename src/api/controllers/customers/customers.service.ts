@@ -20,6 +20,10 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = createCustomerDto[key];
+        const datetest = new Date(createCustomerDto[key]);
+        if (datetest instanceof Date) {
+          newObject[key] = datetest;
+        }
       }
     }
     return this.prismaService.customer.create({
@@ -78,6 +82,10 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = updateCustomerDto[key];
+        const datetest = new Date(updateCustomerDto[key]);
+        if (datetest instanceof Date) {
+          newObject[key] = datetest;
+        }
       }
     }
     return this.prismaService.customer.update({
