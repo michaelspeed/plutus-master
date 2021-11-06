@@ -20,9 +20,8 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = createCustomerDto[key];
-        const datetest = Date.parse(createCustomerDto[key]);
-        if (!isNaN(datetest)) {
-          newObject[key] = new Date(datetest);
+        if (key === 'drug_license_validity') {
+          newObject[key] = new Date(createCustomerDto[key]);
         }
       }
     }
@@ -82,9 +81,8 @@ export class CustomersService {
         newObject[key] = undefined;
       } else {
         newObject[key] = updateCustomerDto[key];
-        const datetest = Date.parse(updateCustomerDto[key]);
-        if (!isNaN(datetest)) {
-          newObject[key] = new Date(datetest);
+        if (key === 'drug_license_validity') {
+          newObject[key] = new Date(updateCustomerDto[key]);
         }
       }
     }
