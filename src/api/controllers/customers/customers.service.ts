@@ -22,7 +22,7 @@ export class CustomersService {
         newObject[key] = createCustomerDto[key];
         const datetest = Date.parse(createCustomerDto[key]);
         if (!isNaN(datetest)) {
-          newObject[key] = datetest;
+          newObject[key] = new Date(datetest);
         }
       }
     }
@@ -84,7 +84,7 @@ export class CustomersService {
         newObject[key] = updateCustomerDto[key];
         const datetest = Date.parse(updateCustomerDto[key]);
         if (!isNaN(datetest)) {
-          newObject[key] = datetest;
+          newObject[key] = new Date(datetest);
         }
       }
     }
