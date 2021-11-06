@@ -138,6 +138,11 @@ export class CreateCreditorDto {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @IsString()
+  gst_status: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsEnum(GstStatus)
   gststatus: GstStatus;
 }

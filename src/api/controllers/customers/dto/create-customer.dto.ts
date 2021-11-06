@@ -139,6 +139,11 @@ export class CreateCustomerDto {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @IsString()
+  gst_status: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsEnum(GstStatus)
   gststatus: GstStatus;
 }

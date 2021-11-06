@@ -64,6 +64,7 @@ model Customer {
     banker              String?
     document_through    String?
     GSTIN               String?
+    gst_status          String?     @default("UNREGISTERED")
     state_tax           Boolean?    @default(false)
     l_type              Boolean?    @default(false)
     gststatus           GstStatus?      @default(unregistered)
@@ -101,6 +102,7 @@ model Creditor {
     banker              String?
     document_through    String?
     GSTIN               String?
+    gst_status          String?     @default("UNREGISTERED")
     state_tax           Boolean?    @default(false)
     l_type              Boolean?    @default(false)
     gststatus           GstStatus?      @default(unregistered)
