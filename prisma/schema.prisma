@@ -23,6 +23,7 @@ model Organization {
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt
     customers   Customer[]
+    creditorIds String[]        @db.Array(ObjectId)
     creditors   Creditor[]
 }
 
@@ -76,8 +77,8 @@ model Creditor {
     id                  String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
     name                String
     contact_person      String
-    companyId           String?         @db.ObjectId
-    company             Organization?   @relation(fields: [companyId], references: [id])
+    companyIds          String[]          @db.Array(ObjectId)
+    company             Organization?    @relation(fields: [companyIds], references: [creditorIds])
     shipping_address    String?
     bill_address        String?
     city                String?
