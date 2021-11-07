@@ -7,6 +7,7 @@ import {
   IsString, Max, Min
 } from "class-validator";
 import { GstStatus } from '@prisma/client';
+import { Type } from "class-transformer";
 
 export class CreateCreditorDto {
   @ApiProperty()
@@ -44,6 +45,7 @@ export class CreateCreditorDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber({ allowNaN: true })
+  @Type(() => Number)
   @Min(0)
   @Max(1000000000000)
   phone: number;
