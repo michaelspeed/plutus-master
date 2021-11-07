@@ -30,7 +30,7 @@ export class CreditorsService {
         ...newObject,
         company: {
           connect: {
-            id: id,
+            id,
           },
         },
       },

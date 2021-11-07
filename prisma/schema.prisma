@@ -24,7 +24,7 @@ model Organization {
     updatedAt   DateTime        @updatedAt
     customers   Customer[]
     creditorIds String[]        @db.Array(ObjectId)
-    creditors   Creditor[]
+    creditors   Creditor[]      @relation(fields: [creditorIds])
 }
 
 enum GstStatus {
