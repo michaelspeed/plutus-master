@@ -18,7 +18,7 @@ model Organization {
     gst         String?
     state       String?
     zip         Int?
-    phone       Int?
+    phone       BigInt?
     licence     String?
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt

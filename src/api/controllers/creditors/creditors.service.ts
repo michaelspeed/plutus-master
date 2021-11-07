@@ -37,11 +37,11 @@ export class CreditorsService {
     });
   }
 
-  findAllWithCompany(ctx: RequestContext, id: string) {
+  async findAllWithCompany(ctx: RequestContext, id: string) {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    return this.prismaService.creditor.findMany({
+    const creditors = await this.prismaService.creditor.findMany({
       where: {
         company: {
           some: {
@@ -50,6 +50,7 @@ export class CreditorsService {
         },
       },
     });
+    return creditors;
   }
 
   findAll() {
