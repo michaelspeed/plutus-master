@@ -6,8 +6,8 @@ import {
   IsEnum,
   IsNumber,
   IsOptional,
-  IsString,
-} from 'class-validator';
+  IsString, Max, Min
+} from "class-validator";
 
 export class CreateCustomerDto {
   @ApiProperty()
@@ -45,6 +45,8 @@ export class CreateCustomerDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber({ allowNaN: true })
+  @Min(0)
+  @Max(1000000000000)
   phone: number;
 
   @ApiPropertyOptional()
