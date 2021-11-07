@@ -44,7 +44,9 @@ export class CreditorsService {
     return this.prismaService.creditor.findMany({
       where: {
         company: {
-          id,
+          some: {
+            id: id,
+          },
         },
       },
     });

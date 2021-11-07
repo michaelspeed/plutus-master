@@ -78,7 +78,7 @@ model Creditor {
     name                String
     contact_person      String
     companyIds          String[]          @db.Array(ObjectId)
-    company             Organization?    @relation(fields: [companyIds], references: [creditorIds])
+    company             Organization[]    @relation(fields: [companyIds])
     shipping_address    String?
     bill_address        String?
     city                String?
