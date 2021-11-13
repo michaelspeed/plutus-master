@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsBoolean, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
 
 export class CreateProductDto {
   @ApiProperty()
@@ -27,8 +28,9 @@ export class CreateProductDto {
   HSN: string;
 
   @ApiPropertyOptional()
-  @IsString()
-  GST: string;
+  @IsNumber()
+  @Type(() => Number)
+  GST: number;
 
   @ApiPropertyOptional()
   @IsString()
@@ -45,4 +47,8 @@ export class CreateProductDto {
   @ApiPropertyOptional()
   @IsBoolean()
   tax_free: boolean;
+
+  @ApiPropertyOptional()
+  @IsString()
+  organization: string;
 }

@@ -1,23 +1,75 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { PrismaService } from '../../../service/helpers/prisma.service';
+import { RequestContext } from '../../common/RequestContext/request-context';
 
 @Injectable()
 export class ProductsService {
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  constructor(private readonly prismaService: PrismaService) {}
+
+  create(createProductDto: CreateProductDto, ctx: RequestContext) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    const { organization, ...rest } = createProductDto;
+    return this.prismaService.products.create({
+      data: {
+        ...rest,
+        organization: {
+          connect: {
+            id: organization,
+          },
+        },
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all products`;
+  findAllByOrganizations(organizationId: string, ctx: RequestContext) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.products.findMany({
+      where: {
+        organization: {
+          id: organizationId,
+        },
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findAll(ctx: RequestContext) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.products.findMany({
+      where: {
+        organization: {
+          licence: ctx.licence,
+        },
+      },
+    });
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  findOne(id: string) {
+    return this.prismaService.products.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
+  update(id: string, updateProductDto: UpdateProductDto, ctx: RequestContext) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    const { organization, ...rest } = updateProductDto;
+    return this.prismaService.products.update({
+      where: {
+        id,
+      },
+      data: rest,
+    });
   }
 
   remove(id: number) {

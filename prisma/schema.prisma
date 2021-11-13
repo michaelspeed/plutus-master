@@ -25,6 +25,7 @@ model Organization {
     customers   Customer[]
     creditorIds String[]        @db.Array(ObjectId)
     creditors   Creditor[]      @relation(fields: [creditorIds])
+    products    Products[]
 }
 
 enum GstStatus {
@@ -109,6 +110,7 @@ model Creditor {
     gststatus           GstStatus?      @default(unregistered)
     createdAt           DateTime        @default(now())
     updatedAt           DateTime        @updatedAt
+    products            Products[]
 }
 
 model Invoice {
@@ -135,4 +137,8 @@ model Products {
     group       String?
     tax         Boolean?        @default(true)
     tax_free    Boolean?        @default(false)
+    creditorId  String?         @db.ObjectId
+    creditor    Creditor?       @relation(fields: [creditorId], references: [id])
+    organizationId  String?     @db.ObjectId
+    organization   Organization? @relation(fields: [organizationId], references: [id])
 }
