@@ -117,3 +117,22 @@ model Invoice {
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt
 }
+
+model Products {
+    id          String          @id @default(dbgenerated()) @map("_id") @db.ObjectId
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
+    name        String
+    description String?
+    category    String?
+    expiry      Boolean?        @default(false)
+    batch_no    String?
+    HSN         String?
+    GST         Float?
+    CGST        Float?
+    SGST        Float?
+    mfg         String?
+    group       String?
+    tax         Boolean?        @default(true)
+    tax_free    Boolean?        @default(false)
+}

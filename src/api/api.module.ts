@@ -11,6 +11,7 @@ import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { RequestContextService } from './common/RequestContext/request-context.service';
 import { CustomersModule } from './controllers/customers/customers.module';
 import { CreditorsModule } from './controllers/creditors/creditors.module';
+import { ProductsModule } from './controllers/products/products.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { CreditorsModule } from './controllers/creditors/creditors.module';
     CompanyModule,
     CustomersModule,
     CreditorsModule,
+    ProductsModule,
   ],
   controllers: [AuthenticationController],
   providers: [

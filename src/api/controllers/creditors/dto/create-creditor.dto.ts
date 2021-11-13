@@ -4,10 +4,12 @@ import {
   IsEnum,
   IsNumber,
   IsOptional,
-  IsString, Max, Min
-} from "class-validator";
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 import { GstStatus } from '@prisma/client';
-import { Type } from "class-transformer";
+import { Type } from 'class-transformer';
 
 export class CreateCreditorDto {
   @ApiProperty()
