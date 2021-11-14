@@ -12,7 +12,7 @@ export class ProductsService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    const { organization, ...rest } = createProductDto;
+    const { organizationId, id, ...rest } = createProductDto;
 
     const newObject: any = {};
     const keys = Object.keys(rest);
@@ -28,7 +28,7 @@ export class ProductsService {
         ...newObject,
         organization: {
           connect: {
-            id: organization,
+            id: organizationId,
           },
         },
       },
@@ -73,7 +73,7 @@ export class ProductsService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    const { organization, ...rest } = updateProductDto;
+    const { organizationId, ...rest } = updateProductDto;
     const newObject: any = {};
     const keys = Object.keys(rest);
     for (const key of keys) {

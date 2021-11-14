@@ -61,5 +61,10 @@ export class CreateProductDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
-  organization: string;
+  id: string;
+
+  @ApiPropertyOptional()
+  @IsString()
+  @IsOptional()
+  organizationId: string;
 }
