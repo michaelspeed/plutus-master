@@ -13,9 +13,17 @@ export class ProductsService {
       throw new UnauthorizedException('You are not authorized');
     }
     const { organization, ...rest } = createProductDto;
+
+    const newObject: any = {};
+    const keys = Object.keys(rest);
+    for (const key of keys) {
+      if (createProductDto[key] === null) {
+        newObject[key] = undefined;
+      }
+    }
     return this.prismaService.products.create({
       data: {
-        ...rest,
+        ...newObject,
         organization: {
           connect: {
             id: organization,
@@ -64,11 +72,18 @@ export class ProductsService {
       throw new UnauthorizedException('You are not authorized');
     }
     const { organization, ...rest } = updateProductDto;
+    const newObject: any = {};
+    const keys = Object.keys(rest);
+    for (const key of keys) {
+      if (updateProductDto[key] === null) {
+        newObject[key] = undefined;
+      }
+    }
     return this.prismaService.products.update({
       where: {
         id,
       },
-      data: rest,
+      data: newObject,
     });
   }
 
