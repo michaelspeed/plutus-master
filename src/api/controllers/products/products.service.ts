@@ -19,6 +19,8 @@ export class ProductsService {
     for (const key of keys) {
       if (createProductDto[key] === null) {
         newObject[key] = undefined;
+      } else {
+        newObject[key] = createProductDto[key];
       }
     }
     return this.prismaService.products.create({
@@ -77,6 +79,8 @@ export class ProductsService {
     for (const key of keys) {
       if (updateProductDto[key] === null) {
         newObject[key] = undefined;
+      } else {
+        newObject[key] = updateProductDto[key];
       }
     }
     return this.prismaService.products.update({
