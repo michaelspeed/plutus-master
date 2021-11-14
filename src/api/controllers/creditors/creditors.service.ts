@@ -61,7 +61,7 @@ export class CreditorsService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    return this.prismaService.customer.findUnique({
+    return this.prismaService.creditor.findUnique({
       where: {
         id,
       },
