@@ -19,7 +19,11 @@ function checkForArray(array) {
 function checkForBigInt(object) {
   const keys = Object.keys(object);
   for (const key of keys) {
-    if (typeof object[key] === 'bigint') {
+    if (
+      object[key] !== undefined &&
+      object[key] !== null &&
+      typeof object[key] === 'bigint'
+    ) {
       object[key] = JSONBig.stringify(object[key]);
     }
   }
