@@ -43,6 +43,15 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+  @Get('/search/:search/:id')
+  findBySearch(
+    @Param('search') search: string,
+    @Param('id') id: string,
+    @Ctx() context: RequestContext,
+  ) {
+    return this.productsService.findBySearch(search, context, id);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,
