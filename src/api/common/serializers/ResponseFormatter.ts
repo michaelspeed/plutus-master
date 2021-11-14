@@ -1,6 +1,10 @@
 import * as JSONBig from 'json-bigint';
 
 function formatResponse(responseObject) {
+  if (responseObject === null || responseObject === undefined) {
+    return null;
+  }
+
   if (responseObject instanceof Array) {
     return checkForArray(responseObject);
   }
