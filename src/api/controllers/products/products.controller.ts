@@ -30,8 +30,11 @@ export class ProductsController {
     return this.productsService.findAll(context);
   }
 
-  @Get(':id')
-  findAllByOrganizations(@Param('id') id: string, @Ctx() context: RequestContext) {
+  @Get('/organization/:id')
+  findAllByOrganizations(
+    @Param('id') id: string,
+    @Ctx() context: RequestContext,
+  ) {
     return this.productsService.findAllByOrganizations(id, context);
   }
 
@@ -41,7 +44,11 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto, @Ctx() context: RequestContext,) {
+  update(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+    @Ctx() context: RequestContext,
+  ) {
     return this.productsService.update(id, updateProductDto, context);
   }
 
