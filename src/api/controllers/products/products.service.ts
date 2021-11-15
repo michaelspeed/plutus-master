@@ -102,7 +102,7 @@ export class ProductsService {
     return this.prismaService.products.findMany({
       where: {
         name: {
-          contains: `%${search}%`,
+          startsWith: search,
         },
         organization: {
           id,
