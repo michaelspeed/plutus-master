@@ -110,4 +110,26 @@ export class ProductsService {
       },
     });
   }
+
+  connectProductToCreditor(
+    productId: string,
+    creditorId: string,
+    ctx: RequestContext,
+  ) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.products.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        creditor: {
+          connect: {
+            id: creditorId,
+          },
+        },
+      },
+    });
+  }
 }

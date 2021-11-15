@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -50,6 +51,19 @@ export class ProductsController {
     @Ctx() context: RequestContext,
   ) {
     return this.productsService.findBySearch(search, context, id);
+  }
+
+  @Put('/connect/:productId/:creditorId')
+  connect(
+    @Param('productId') productId: string,
+    @Param('creditorId') creditorId: string,
+    @Ctx() context: RequestContext,
+  ) {
+    return this.productsService.connectProductToCreditor(
+      productId,
+      creditorId,
+      context,
+    );
   }
 
   @Patch(':id')
