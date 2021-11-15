@@ -101,18 +101,9 @@ export class ProductsService {
     }
     return this.prismaService.products.findMany({
       where: {
-        OR: [
-          {
-            name: {
-              contains: search,
-            },
-          },
-          {
-            description: {
-              contains: search,
-            },
-          },
-        ],
+        name: {
+          contains: `%${search}%`,
+        },
         organization: {
           id,
         },
