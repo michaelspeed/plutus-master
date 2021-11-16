@@ -35,6 +35,14 @@ export class CreditorsController {
     return this.creditorsService.findAllWithCompany(context, id);
   }
 
+  @Get('products/:id')
+  findCreditorProducts(
+    @Param('id') id: string,
+    @Ctx() context: RequestContext,
+  ) {
+    return this.creditorsService.findProductsWithCreditors(context, id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string, @Ctx() context: RequestContext) {
     return this.creditorsService.findOne(id, context);

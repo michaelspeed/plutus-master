@@ -53,6 +53,19 @@ export class CreditorsService {
     return creditors;
   }
 
+  findProductsWithCreditors(ctx: RequestContext, id: string) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.products.findMany({
+      where: {
+        creditor: {
+          id: id,
+        },
+      },
+    });
+  }
+
   findAll() {
     return `This action returns all creditors`;
   }
