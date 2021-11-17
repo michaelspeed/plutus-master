@@ -12,7 +12,13 @@ export class ProductsService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    const { organizationId, id, ...rest } = createProductDto;
+    const { organizationId, id, GST, ...rest } = createProductDto;
+
+    let cgst = 0;
+
+    if (GST && !isNaN(GST)) {
+      cgst = GST / 2;
+    }
 
     const newObject: any = {};
     const keys = Object.keys(rest);
@@ -26,6 +32,8 @@ export class ProductsService {
     return this.prismaService.products.create({
       data: {
         ...newObject,
+        CGST: cgst,
+        SGST: cgst,
         organization: {
           connect: {
             id: organizationId,
