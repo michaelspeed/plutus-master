@@ -54,6 +54,19 @@ export class CustomersService {
     return `This action returns all customers`;
   }
 
+  findCreditorProducts(ctx: RequestContext, id: string) {
+    if (!ctx.licenseStatus) {
+      throw new UnauthorizedException('You are not authorized');
+    }
+    return this.prismaService.products.findMany({
+      where: {
+        creditor: {
+          id,
+        },
+      },
+    });
+  }
+
   findOne(id: string, ctx: RequestContext) {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
