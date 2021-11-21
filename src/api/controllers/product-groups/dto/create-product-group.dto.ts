@@ -5,4 +5,8 @@ export class CreateProductGroupDto {
   @ApiProperty()
   @IsString()
   name: string;
+
+  @ApiProperty()
+  @IsString()
+  organizationId: string;
 }

@@ -15,9 +15,17 @@ export class ProductGroupsService {
     if (!context.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
+
+    const { name, organizationId } = createProductGroupDto;
+
     return this.prismaService.producsGroups.create({
       data: {
-        ...createProductGroupDto,
+        name,
+        organization: {
+          connect: {
+            id: organizationId,
+          },
+        },
       },
     });
   }
