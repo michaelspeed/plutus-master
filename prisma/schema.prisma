@@ -146,7 +146,7 @@ model Products {
     creditor    Creditor?       @relation(fields: [creditorId], references: [id])
     organizationId  String?     @db.ObjectId
     organization   Organization? @relation(fields: [organizationId], references: [id])
-    groups       ProducsGroups[]       @relation(fields: [groupId], references: [id])
+    groups       ProducsGroups?       @relation(fields: [groupId], references: [id])
 
 }
 
