@@ -67,4 +67,25 @@ export class CreateProductDto {
   @IsString()
   @IsOptional()
   organizationId: string;
+
+  @ApiPropertyOptional()
+  @IsString()
+  @IsOptional()
+  packaging: string;
+
+  @ApiPropertyOptional()
+  @IsString()
+  @IsOptional()
+  purchase_unit: string;
+
+  @ApiPropertyOptional()
+  @IsString()
+  @IsOptional()
+  sale_unit: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  @Type(() => Number)
+  @IsOptional()
+  conv_factor: number;
 }

@@ -135,6 +135,10 @@ model Products {
     CGST        Float?
     SGST        Float?
     mfg         String?
+    packaging   String?
+    purchase_unit String?
+    conv_factor Float?
+    sale_unit   String?
     groupId     String?
     tax         Boolean?        @default(true)
     tax_free    Boolean?        @default(false)
