@@ -12,6 +12,7 @@ import { RequestContextService } from './common/RequestContext/request-context.s
 import { CustomersModule } from './controllers/customers/customers.module';
 import { CreditorsModule } from './controllers/creditors/creditors.module';
 import { ProductsModule } from './controllers/products/products.module';
+import { ProductGroupsModule } from './controllers/product-groups/product-groups.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { ProductsModule } from './controllers/products/products.module';
     CustomersModule,
     CreditorsModule,
     ProductsModule,
+    ProductGroupsModule,
   ],
   controllers: [AuthenticationController],
   providers: [

@@ -12,7 +12,7 @@ export class ProductsService {
     if (!ctx.licenseStatus) {
       throw new UnauthorizedException('You are not authorized');
     }
-    const { organizationId, id, GST, ...rest } = createProductDto;
+    const { organizationId, id, GST, group, ...rest } = createProductDto;
 
     let cgst = 0;
 
@@ -37,6 +37,11 @@ export class ProductsService {
         organization: {
           connect: {
             id: organizationId,
+          },
+        },
+        groups: {
+          connect: {
+            id: group,
           },
         },
       },

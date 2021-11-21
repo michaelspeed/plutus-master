@@ -26,6 +26,7 @@ model Organization {
     creditorIds String[]        @db.Array(ObjectId)
     creditors   Creditor[]      @relation(fields: [creditorIds])
     products    Products[]
+    groups      ProducsGroups[]
 }
 
 enum GstStatus {
@@ -134,11 +135,21 @@ model Products {
     CGST        Float?
     SGST        Float?
     mfg         String?
-    group       String?
+    groupId     String?
     tax         Boolean?        @default(true)
     tax_free    Boolean?        @default(false)
     creditorId  String?         @db.ObjectId
     creditor    Creditor?       @relation(fields: [creditorId], references: [id])
     organizationId  String?     @db.ObjectId
     organization   Organization? @relation(fields: [organizationId], references: [id])
+    groups       ProducsGroups[]       @relation(fields: [groupId], references: [id])
+
+}
+
+model ProducsGroups {
+    id          String              @id @default(dbgenerated()) @map("_id") @db.ObjectId
+    name        String
+    products    Products[]
+    organizationId  String?         @db.ObjectId
+    organization    Organization?   @relation(fields: [organizationId], references: [id])
 }
